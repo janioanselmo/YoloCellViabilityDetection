@@ -78,6 +78,19 @@ target/
 # Jupyter Notebook
 .ipynb_checkpoints
 
+# YOLO/Kaggle generated artifacts
+yolo_dataset/
+yolo_training/
+yolo_optimization/
+patches_dataset/
+runs/
+*.pt
+*.onnx
+*.engine
+*.tflite
+preparation_info.json
+*_report.txt
+
 # IPython
 profile_default/
 ipython_config.py

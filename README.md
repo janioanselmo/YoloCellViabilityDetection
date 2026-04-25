@@ -41,6 +41,8 @@ Automated detection and classification of *Saccharomyces cerevisiae* cells with/
 
 ### Prerequisites
 ```bash
+python -m venv .venv
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
@@ -106,6 +108,14 @@ Block 10: Multi-seed Testing               → Training stability analysis
 Block 11: Production System                → Universal inference API
 ```
 
+## Reproducibility Notes
+
+- The notebook metadata targets Python 3.11 and a Kaggle GPU runtime.
+- The implementation uses fixed seeds for Python, NumPy and PyTorch.
+- Dataset paths are optimized for Kaggle (`/kaggle/input/...` and `/kaggle/working/...`).
+- Generated datasets, training runs and model weights are intentionally ignored by Git.
+- The canonical notebook file is `tcc_yolo_cell_detection.ipynb`.
+
 ### Universal Inference System
 ```python
 # Single image analysis
@@ -118,7 +128,7 @@ results = universal_analysis('path/to/folder/', conf_threshold=0.55)
 results = universal_analysis('path/', conf_threshold=0.6, max_visualize=10)
 ```
 
-##  Key Discoveries
+## Key Discoveries
 
 ### Minimal Augmentation Insight
 Reduced data augmentation outperformed conventional extensive transformations for microscopy, possibly due to preservation of specific morphological characteristics.
@@ -138,6 +148,7 @@ F1-Score based methodology (threshold=0.55) outperformed arbitrary values.
 - **Small dataset**: 32-image test set (high variance)
 - **Single modality**: Brightfield microscopy only
 - **Academic context**: Limited undergraduate resources
+- **Environment coupling**: Several notebook paths are currently Kaggle-specific
 
 ## Future Work
 
@@ -146,6 +157,13 @@ F1-Score based methodology (threshold=0.55) outperformed arbitrary values.
 - Different staining techniques
 - Laboratory GUI interface
 - Comparison with other architectures
+- Parameterize dataset/model paths for local execution outside Kaggle
+- Export the production inference block to a standalone Python module
+- Add smoke tests for dataset conversion and inference utilities
+
+## Technical Audit
+
+A detailed technical audit is available in [`AUDIT.md`](AUDIT.md), with prioritized bugs, maintainability improvements and low-risk contribution opportunities.
 
 ## Citation
 
