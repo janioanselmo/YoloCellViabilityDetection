@@ -5,167 +5,100 @@
 ![YOLOv8](https://img.shields.io/badge/YOLOv8-Ultralytics-green.svg)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
-Automated detection and classification of *Saccharomyces cerevisiae* cells with/without methylene blue staining using YOLOv8 deep learning.
+## 🇧🇷 PT-BR
 
-## Key Results
+Detecção e classificação automatizada de células de *Saccharomyces cerevisiae* com e sem coloração por azul de metileno usando deep learning com YOLOv8.
 
-- **Performance**: 94.4% mAP@0.5 (validation), 88.7% F1-Score (test)
-- **Methodology**: Systematic framework with 5 optimization strategies
-- **Key Finding**: Minimal augmentation proved more effective for microscopy
-- **Reproducibility**: Complete code with deterministic controls
+### Visão Geral
 
-## About This Project
+Este projeto foi desenvolvido como Trabalho de Conclusão de Curso em Engenharia Eletrônica na UFSC em 2025. O objetivo é automatizar a análise de viabilidade celular tradicionalmente feita de forma manual, reduzindo subjetividade e aumentando produtividade.
 
-**Bachelor's Thesis (TCC)** - Electronic Engineering, UFSC 2025
+### Resultados Principais
 
-**Objective**: Automate cell viability analysis traditionally performed manually, reducing subjectivity and increasing throughput.
+- **Desempenho:** 94,4% mAP@0.5 em validação e 88,7% F1-Score em teste.
+- **Metodologia:** estrutura sistemática com 5 estratégias de otimização.
+- **Achado principal:** augmentação mínima foi mais efetiva para microscopia.
+- **Reprodutibilidade:** notebook completo com controles determinísticos.
 
-**Context**: Specific application for *S. cerevisiae* + methylene blue in brightfield microscopy.
+### Tecnologias
 
-## Technologies
+- YOLOv8 / Ultralytics.
+- PyTorch.
+- Python 3.11.
+- Ambiente Kaggle com GPU Tesla P100.
+- Dataset com 329 imagens e 4.930 anotações celulares.
 
-- **Deep Learning**: YOLOv8 (Ultralytics)
-- **Framework**: PyTorch, Python 3.11
-- **Environment**: Kaggle (Tesla P100)
-- **Dataset**: 329 images, 4,930 cellular annotations
+### Estrutura
 
-## Dataset Overview
+| Arquivo | Descrição |
+| --- | --- |
+| `tcc_yolo_cell_detection.ipynb` | Notebook principal com preparação, treinamento, avaliação e inferência |
+| `requirements.txt` | Dependências Python |
+| `AUDIT.md` | Auditoria técnica com riscos e melhorias |
+| `LICENSE` | Licença MIT |
 
-- **Total**: 329 microscopic images (640×640px)
-- **Classes**: COM_corante (dead cells) vs SEM_corante (viable cells)
-- **Splits**: Train (233), Validation (64), Test (32)
-- **Format**: COCO → YOLO conversion
-- **Balance**: 46.2% vs 53.8% (adequate)
+### Como Executar
 
-## Quick Start
-
-### Prerequisites
 ```bash
 python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\Scripts\activate
+source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### Complete Implementation Structure
-Execute `tcc_yolo_cell_detection.ipynb` sequentially - **11 comprehensive blocks:**
+No Windows:
 
-**Setup & Foundation:**
-- **Setup**: Environment configuration and library imports
-- **Block 1**: COCO dataset loading and exploratory analysis  
-- **Block 2**: Data preparation (COCO→YOLO conversion + quality filters)
-
-**Core Training & Evaluation:**
-- **Block 3**: YOLOv8 baseline training and validation
-- **Block 4**: YOLO detection visualization and analysis
-
-**Advanced Optimization:**
-- **Block 5**: Systematic optimization (5 strategies: baseline, fine-tuning, class weight, regularization, minimal augmentation)
-- **Block 6**: Individual threshold optimization for all 5 trained models
-- **Block 7**: Final results consolidation and tabular analysis
-
-**Comprehensive Testing:**
-- **Block 8**: Microscopic cell detection metrics analysis  
-- **Block 9**: Robustness testing - Inference validation
-- **Block 10**: Robustness testing - Multi-seed training validation
-
-**Production System:**
-- **Block 11**: Unified analysis system (automatic single image or batch processing)
-
-### Key Features
-- **Automated path detection** - Works with Kaggle or custom environments
-- **Anti-leakage protocol** - Rigorous data splitting methodology  
-- **Universal inference** - Single function handles images or folders
-- **Deterministic training** - Reproducible results with seed control
-- **Scientific metrics** - IoU, mAP@0.5, precision, recall, F1-Score
-
-## Optimization Strategies Tested
-
-The notebook implements 5 systematic optimization strategies:
-
-| Strategy | Description | Key Features |
-|----------|-------------|--------------|
-| **Baseline** | Standard YOLOv8s | Reference model (90.8% mAP@0.5) |
-| **Advanced Fine-tuning** | Reduced LR + regularization | Learning rate optimization |
-| **High Class Weight** | Balanced class weighting | Focus on minority class |
-| **High Regularization** | Dropout + weight decay | Overfitting prevention |
-| **Minimal Augmentation** | Reduced transformations | **94.4% mAP@0.5** |
-
-## Notebook Architecture
-
-### Block-by-Block Structure
-```
-Setup Block: Environment + Dependencies    → Complete setup and imports
-Block 1: Dataset Analysis                  → COCO loading + statistics  
-Block 2: Data Preparation                  → COCO→YOLO + quality filters
-Block 3: Baseline Training                 → YOLOv8s standard training
-Block 4: Visualization                     → Results analysis + plots  
-Block 5: Optimization                      → 5 systematic strategies
-Block 6: Threshold Tuning                  → Individual model optimization
-Block 7: Results Consolidation             → Final tabular analysis
-Block 8: Metrics Analysis                  → Microscopy-specific metrics
-Block 9: Inference Testing                 → Robustness validation
-Block 10: Multi-seed Testing               → Training stability analysis
-Block 11: Production System                → Universal inference API
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
 ```
 
-## Reproducibility Notes
+Execute o notebook `tcc_yolo_cell_detection.ipynb` sequencialmente.
 
-- The notebook metadata targets Python 3.11 and a Kaggle GPU runtime.
-- The implementation uses fixed seeds for Python, NumPy and PyTorch.
-- Dataset paths are optimized for Kaggle (`/kaggle/input/...` and `/kaggle/working/...`).
-- Generated datasets, training runs and model weights are intentionally ignored by Git.
-- The canonical notebook file is `tcc_yolo_cell_detection.ipynb`.
+### Arquitetura do Notebook
 
-### Universal Inference System
+- Setup: ambiente, dependências e imports.
+- Bloco 1: análise exploratória do dataset COCO.
+- Bloco 2: preparação de dados e conversão COCO para YOLO.
+- Bloco 3: treinamento baseline YOLOv8.
+- Bloco 4: visualização e análise de detecções.
+- Bloco 5: otimização sistemática com 5 estratégias.
+- Bloco 6: ajuste de thresholds por modelo.
+- Bloco 7: consolidação de resultados.
+- Bloco 8: métricas específicas de microscopia.
+- Bloco 9: testes de inferência.
+- Bloco 10: validação multi-seed.
+- Bloco 11: sistema de análise unificado.
+
+### Sistema de Inferência
+
 ```python
-# Single image analysis
-results = universal_analysis('path/to/image.jpg')
-
-# Batch processing  
-results = universal_analysis('path/to/folder/', conf_threshold=0.55)
-
-# Custom parameters
-results = universal_analysis('path/', conf_threshold=0.6, max_visualize=10)
+results = universal_analysis("path/to/image.jpg")
+results = universal_analysis("path/to/folder/", conf_threshold=0.55)
+results = universal_analysis("path/", conf_threshold=0.6, max_visualize=10)
 ```
 
-## Key Discoveries
+### Limitações
 
-### Minimal Augmentation Insight
-Reduced data augmentation outperformed conventional extensive transformations for microscopy, possibly due to preservation of specific morphological characteristics.
+- Escopo específico para *S. cerevisiae* com azul de metileno.
+- Dataset pequeno no conjunto de teste.
+- Modalidade única: microscopia brightfield.
+- Alguns caminhos do notebook são específicos do Kaggle.
 
-### Anti-Leakage Methodology
-Rigorous data leakage prevention protocol:
-- Chronological splits respected
-- Test set isolated during development
-- Deterministic seeds controlled
+### Trabalhos Futuros
 
-### Threshold Optimization
-F1-Score based methodology (threshold=0.55) outperformed arbitrary values.
+- Validar com datasets maiores.
+- Estender para outras espécies celulares.
+- Testar diferentes técnicas de coloração.
+- Criar interface laboratorial.
+- Comparar com outras arquiteturas.
+- Exportar o bloco de inferência para módulo Python independente.
 
-## Limitations
+### Auditoria Técnica
 
-- **Specific scope**: Only *S. cerevisiae* + methylene blue
-- **Small dataset**: 32-image test set (high variance)
-- **Single modality**: Brightfield microscopy only
-- **Academic context**: Limited undergraduate resources
-- **Environment coupling**: Several notebook paths are currently Kaggle-specific
+Consulte [`AUDIT.md`](AUDIT.md) para bugs priorizados, melhorias de manutenção e oportunidades de contribuição.
 
-## Future Work
-
-- Validation on larger datasets (>1000 images)
-- Extension to other cell species
-- Different staining techniques
-- Laboratory GUI interface
-- Comparison with other architectures
-- Parameterize dataset/model paths for local execution outside Kaggle
-- Export the production inference block to a standalone Python module
-- Add smoke tests for dataset conversion and inference utilities
-
-## Technical Audit
-
-A detailed technical audit is available in [`AUDIT.md`](AUDIT.md), with prioritized bugs, maintainability improvements and low-risk contribution opportunities.
-
-## Citation
+### Citação
 
 ```bibtex
 @misc{tcc2025celldetection,
@@ -178,18 +111,118 @@ A detailed technical audit is available in [`AUDIT.md`](AUDIT.md), with prioriti
 }
 ```
 
-## Complete Documentation
+### Licença
 
-Full thesis (Portuguese): https://repositorio.ufsc.br/handle/123456789/266740
-
-## Contributing
-
-This is an academic project, but suggestions and extensions are welcome!
-
-## License
-
-MIT License - Feel free to use for academic research.
+MIT License. Consulte `LICENSE`.
 
 ---
 
-**Developed as Bachelor's Thesis - Electronic Engineering, UFSC 2025**
+## 🇺🇸 English
+
+Automated detection and classification of *Saccharomyces cerevisiae* cells with and without methylene blue staining using YOLOv8 deep learning.
+
+### Overview
+
+This project was developed as a Bachelor's Thesis in Electronic Engineering at UFSC in 2025. The goal is to automate cell viability analysis traditionally performed manually, reducing subjectivity and increasing throughput.
+
+### Key Results
+
+- **Performance:** 94.4% mAP@0.5 on validation and 88.7% F1-Score on test.
+- **Methodology:** systematic framework with 5 optimization strategies.
+- **Key finding:** minimal augmentation was more effective for microscopy.
+- **Reproducibility:** complete notebook with deterministic controls.
+
+### Technologies
+
+- YOLOv8 / Ultralytics.
+- PyTorch.
+- Python 3.11.
+- Kaggle environment with Tesla P100 GPU.
+- Dataset with 329 images and 4,930 cellular annotations.
+
+### Structure
+
+| File | Description |
+| --- | --- |
+| `tcc_yolo_cell_detection.ipynb` | Main notebook with preparation, training, evaluation and inference |
+| `requirements.txt` | Python dependencies |
+| `AUDIT.md` | Technical audit with risks and improvements |
+| `LICENSE` | MIT license |
+
+### How to Run
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+On Windows:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+```
+
+Run `tcc_yolo_cell_detection.ipynb` sequentially.
+
+### Notebook Architecture
+
+- Setup: environment, dependencies and imports.
+- Block 1: COCO dataset exploratory analysis.
+- Block 2: data preparation and COCO to YOLO conversion.
+- Block 3: YOLOv8 baseline training.
+- Block 4: detection visualization and analysis.
+- Block 5: systematic optimization with 5 strategies.
+- Block 6: per-model threshold tuning.
+- Block 7: final results consolidation.
+- Block 8: microscopy-specific metrics.
+- Block 9: inference testing.
+- Block 10: multi-seed validation.
+- Block 11: unified analysis system.
+
+### Inference System
+
+```python
+results = universal_analysis("path/to/image.jpg")
+results = universal_analysis("path/to/folder/", conf_threshold=0.55)
+results = universal_analysis("path/", conf_threshold=0.6, max_visualize=10)
+```
+
+### Limitations
+
+- Specific scope for *S. cerevisiae* with methylene blue.
+- Small test dataset.
+- Single modality: brightfield microscopy.
+- Some notebook paths are Kaggle-specific.
+
+### Future Work
+
+- Validate on larger datasets.
+- Extend to other cell species.
+- Test different staining techniques.
+- Create a laboratory GUI.
+- Compare with other architectures.
+- Export inference block to a standalone Python module.
+
+### Technical Audit
+
+See [`AUDIT.md`](AUDIT.md) for prioritized bugs, maintainability improvements and contribution opportunities.
+
+### Citation
+
+```bibtex
+@misc{tcc2025celldetection,
+  title={Sistema Automatizado para Detecção e Classificação de Viabilidade Celular em Saccharomyces cerevisiae Utilizando YOLOv8},
+  author={[João Henrique Anizelli Godoi]},
+  year={2025},
+  school={Universidade Federal de Santa Catarina},
+  type={Trabalho de Conclusão de Curso},
+  url={https://github.com/joaohanizelli/yolo-cell-viability-detection}
+}
+```
+
+### License
+
+MIT License. See `LICENSE`.
