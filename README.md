@@ -226,3 +226,16 @@ See [`AUDIT.md`](AUDIT.md) for prioritized bugs, maintainability improvements an
 ### License
 
 MIT License. See `LICENSE`.
+
+### Auditoria / Audit
+#### PT-BR
+- Prioridade maxima: reproducibilidade do ambiente, versoes e dados de entrada.
+- Limpar artefatos gerados e separar claramente fonte, experimento e saida.
+- Documentar como executar o fluxo do zero e como validar resultados.
+- Se houver notebook, garantir ordem de execucao e saida consistente.
+#### EN
+- Top priority: reproducibility of the environment, versions and input data.
+- Clean generated artifacts and separate source, experiment and output clearly.
+- Document how to run the flow from scratch and how to validate results.
+- If a notebook exists, keep execution order and outputs consistent.
+
